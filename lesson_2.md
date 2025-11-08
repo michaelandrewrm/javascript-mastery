@@ -138,8 +138,8 @@ y -> 20
 Stored by reference - variables hold a pointer to a memory location on the heap.
 
 ```js
-let user 1 = { name: "Ada" };
-let user 2 = user1; // copy of the reference (pointer)
+let user1 = { name: "Ada" };
+let user2 = user1; // copy of the reference (pointer)
 
 user2.name = "Grace";
 
@@ -165,7 +165,7 @@ What actually happens:
 
 - Variables and functions are registered in memory before code runs.
 - Functions are hoisted with their definitions.
-- `var`is hoisted but initialized with `undefined`.
+- `var` is hoisted but initialized with `undefined`.
 - `let`/`const` are hoisted but not initialized -> remain in TDZ.
 
 ### 🧩 Example
