@@ -239,7 +239,7 @@ Hi!
 
 🧭 Summary Mental Model
 
-```css
+```
 Source Code
    ↓
 [ Parser ] → AST

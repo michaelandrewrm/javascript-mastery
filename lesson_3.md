@@ -35,7 +35,7 @@ Why?
 
 Memory before execution:
 
-```cpp
+```
 greet -> <function>
 ```
 
@@ -57,7 +57,7 @@ Why?
 
 Memory before execution:
 
-```cpp
+```
 sayHi → undefined
 ```
 
@@ -105,7 +105,7 @@ outer();
 Phase 1: Creation
 
 - Global Execution Context (GEC) created
-  ```cpp
+  ```
   Memory:
   outer → <function>
   ```
@@ -114,14 +114,14 @@ Phase 2: Execution
 
 1. `outer()` is called
    -> Pushes a Function Execution Context (FEC) for `outer` onto the stack
-   ```cpp
+   ```
    Call Stack:
    [outer()]
    [Global()]
    ```
 2. `inner()` is called
    -> Pushes another FEC for `inner`
-   ```cpp
+   ```
    Call Stack:
    [inner()]
    [outer()]
@@ -138,7 +138,7 @@ Phase 2: Execution
 
 Call Stack:
 
-```cpp
+```
 [top]
 │ console.log()
 │ inner()
@@ -149,7 +149,7 @@ Call Stack:
 
 Memory:
 
-```cpp
+```
 Global Memory:
   outer → <function>
 
@@ -224,7 +224,7 @@ outer();
 
 Resolution Path for globalVar:
 
-```cpp
+```
 inner LE → outer LE → global LE → found!
 ```
 
@@ -232,7 +232,7 @@ inner LE → outer LE → global LE → found!
 
 Let’s visualize the Lexical Environment Chain as nested boxes:
 
-```cpp
+```
 Global LE
 |
 |- outer LE
@@ -242,7 +242,7 @@ Global LE
 
 When the engine executes `inner()`:
 
-```cpp
+```
 inner LE: { innerVar }
 ↑
 outer LE: { outerVar }

@@ -55,7 +55,7 @@ When the JS engine parses this script:
 1. It creates Global Execution Context (GEC).
 2. It scans for declarations and allocates memory for each variable.
 
-```cpp
+```
 Memory Allocation (Before Execution)
 a -> undefined          // var is hoisted & initialized
 b -> <uninitialized>    // let exists but not initialized
@@ -82,7 +82,7 @@ The engine executes line-by-line:
 
 ### 📦 Memory Model
 
-```cpp
+```
 Before Execution
 Global Memory:
     a -> undefined
@@ -125,7 +125,7 @@ console.log(y); // 20
 
 Both `x` and `y` point to **separate copies** in memory.
 
-```cpp
+```
 Memory (stack):
 x -> 10
 y -> 20
@@ -148,7 +148,7 @@ console.log(user1.name); // "Grace"
 
 Both `user1` and `user2` point to the same heap object.
 
-```cpp
+```
 Stack:
 user1 -> 0x100 (pointer)
 user2 -> 0x100 (pointer)
@@ -186,7 +186,7 @@ let y = 10;
 
 Memory before execution:
 
-```cpp
+```
 sayHi -> <function>
 x -> undefined
 y -> TDZ
@@ -226,7 +226,7 @@ user = null; // original object now unreachable -> elegible for GC
 
 V8 doesn't use pure reference counting, but the idea helps:
 
-```cpp
+```
 object { name: "Ada" }
 -> reference count = 1 (user)
 user = null

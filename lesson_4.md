@@ -76,7 +76,7 @@ Execution (run) phase:
 
 Visual: Call stack over time
 
-```css
+```
 (1) start
 [top]
 │ Global()
@@ -116,7 +116,7 @@ Visual: Call stack over time
 
 Visual: Memory snapshots (simplified)
 
-```css
+```
 Global LE:
   a → 2
   square → <function>
@@ -258,7 +258,7 @@ f1();
 
 Growth (push):
 
-```css
+```
 Call stack after f1() call:
 [top]
 │ f1
@@ -283,7 +283,7 @@ After f2 → f3:
 
 Pop:
 
-```css
+```
 f3 returns → pop f3
 f2 returns → pop f2
 f1 returns → pop f1

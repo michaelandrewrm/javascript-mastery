@@ -46,7 +46,7 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 
 ---
 
-Lesson 5: Hoisting, Closures & Memory Persistence
+[Lesson 5: Hoisting, Closures & Memory Persistence](lesson_5.md)
 
 - Deep dive into hoisting rules.
 - Inner functions retaining access to outer variables.
