@@ -79,7 +79,7 @@ Goal: Master how JS handles concurrency, async code, and browser APIs.
 
 ---
 
-Lesson 8: Timers, Tasks, and the Browser APIs
+[Lesson 8: Timers, Tasks, and the Browser APIs](lesson_8.md)
 
 - How setTimeout, setInterval, and requestAnimationFrame integrate with the event loop.
 - The role of the Web APIs.
@@ -159,7 +159,9 @@ Lesson 15: Event Delegation & The DOM Connection
 
 - How JS interfaces with the DOM and Event Loop.
 - Bubbling, capturing, and delegation patterns.
-- Lesson 16: Asynchronous Patterns in the Wild
+
+Lesson 16: Asynchronous Patterns in the Wild
+
 - Combining async/await with event streams.
 - Practical API request handling patterns.
 - Error management strategies.
