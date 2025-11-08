@@ -46,7 +46,7 @@ undefined
 ReferenceError: Cannot access 'b' before initialization
 ```
 
-## ⚙️ 2. Step-by-Step Breakdown (Creation → Execution)
+## ⚙️ 2. Step-by-Step Breakdown (Creation -> Execution)
 
 ### 🏗️ Phase 1: Creation (Compile Time)
 

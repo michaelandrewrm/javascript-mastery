@@ -66,11 +66,11 @@ Execution (run) phase:
 3. Inside `hypotenuse`
 
    - Bind params: `p=3`, `q=4`
-   - `const s1 = square(p)` → create Function EC for square → push
-     - Bind `x=3`, compute `y=9`, return 9 → pop square
-   - `const s2 = square(q)` → create another square EC → push
-     - Bind `x=4`, compute `y=16`, return 16 → pop square
-   - `return Math.sqrt(9 + 16)` → returns 5 → pop hypotenuse
+   - `const s1 = square(p)` -> create Function EC for square -> push
+     - Bind `x=3`, compute `y=9`, return 9 -> pop square
+   - `const s2 = square(q)` -> create another square EC -> push
+     - Bind `x=4`, compute `y=16`, return 16 -> pop square
+   - `return Math.sqrt(9 + 16)` -> returns 5 -> pop hypotenuse
 
 4. Back in Global EC: evaluate `console.log("h:", 5)` and print
 
@@ -88,7 +88,7 @@ Visual: Call stack over time
 │ Global()
 └──────────
 
-(3) hypotenuse → call square(p)
+(3) hypotenuse -> call square(p)
 [top]
 │ square(x=3)
 │ hypotenuse()
@@ -101,14 +101,14 @@ Visual: Call stack over time
 │ Global()
 └──────────
 
-(5) hypotenuse → call square(q)
+(5) hypotenuse -> call square(q)
 [top]
 │ square(x=4)
 │ hypotenuse()
 │ Global()
 └──────────
 
-(6) return → finish hypotenuse
+(6) return -> finish hypotenuse
 [top]
 │ Global()
 └──────────
@@ -118,19 +118,19 @@ Visual: Memory snapshots (simplified)
 
 ```
 Global LE:
-  a → 2
-  square → <function>
-  hypotenuse → <function>
+  a -> 2
+  square -> <function>
+  hypotenuse -> <function>
 
 hypotenuse LE (during call):
-  p → 3
-  q → 4
-  s1 → 9
-  s2 → 16
+  p -> 3
+  q -> 4
+  s1 -> 9
+  s2 -> 16
 
 square LE (during call):
-  x → 3 | 4
-  y → 9 | 16
+  x -> 3 | 4
+  y -> 9 | 16
 ```
 
 ## Stack Frames in V8 (Engine View)
@@ -176,9 +176,9 @@ a();
   - Created on every call
   - Binds parameters, local variables, function declarations
   - Sets this depending on call form:
-    - Plain call in strict mode → `undefined`
-    - Method call → object before the dot
-    - `call/apply/bind` → explicit
+    - Plain call in strict mode -> `undefined`
+    - Method call -> object before the dot
+    - `call/apply/bind` -> explicit
     - Arrow functions capture `this` lexically (no own `this`)
 - Eval EC
   - `eval("code")` executes within the current execution context’s environment (direct eval)
@@ -193,7 +193,7 @@ const outer = 1;
 
 function run() {
   const inner = 2;
-  eval("console.log('eval sees:', outer, inner)"); // direct eval → sees both
+  eval("console.log('eval sees:', outer, inner)"); // direct eval -> sees both
 }
 
 run();
@@ -265,14 +265,14 @@ Call stack after f1() call:
 │ Global
 └───────
 
-After f1 → f2:
+After f1 -> f2:
 [top]
 │ f2
 │ f1
 │ Global
 └───────
 
-After f2 → f3:
+After f2 -> f3:
 [top]
 │ f3
 │ f2
@@ -284,9 +284,9 @@ After f2 → f3:
 Pop:
 
 ```
-f3 returns → pop f3
-f2 returns → pop f2
-f1 returns → pop f1
+f3 returns -> pop f3
+f2 returns -> pop f2
+f1 returns -> pop f1
 Resume Global
 ```
 
@@ -304,7 +304,7 @@ Key rules:
 function A(m) {
   // Declared in Global EC
   const doubled = m * 2; // A's LE: { m, doubled }
-  return B(doubled); // Call → push B frame
+  return B(doubled); // Call -> push B frame
 }
 
 function B(n) {
@@ -319,16 +319,16 @@ console.log(result); // 100
 
 Resolution & frames:
 
-- A(5) → push A: binds m=5, compute doubled=10
-- B(10) → push B: binds n=10, compute squared=100, return → pop B
-- Return to A, return 100 → pop A
+- A(5) -> push A: binds m=5, compute doubled=10
+- B(10) -> push B: binds n=10, compute squared=100, return -> pop B
+- Return to A, return 100 -> pop A
 - Global prints 100
 
 ## Behind the Hood (Engine View)
 
 - Parser builds AST; functions become function objects with a hidden [[Environment]] link to the outer environment
-- Ignition executes bytecode; each call → interpreter frame
-- TurboFan may optimize hot calls → optimized frames
+- Ignition executes bytecode; each call -> interpreter frame
+- TurboFan may optimize hot calls -> optimized frames
 - Deopt can unwind optimized frames to interpreter frames if type assumptions break
 - GC walks from roots (globals, current stack frames, live closures) to determine reachability; locals in active frames are roots
 
@@ -401,9 +401,9 @@ Explain using direct vs indirect eval
 ## Quick Cheatsheet (Mental Model)
 
 ```
-Write code → Parse (AST) → Create Global EC → Execute
-Function call → Create Function EC → Push frame
-Return/throw → Pop frame → Resume caller
-Async callback → scheduled → later: new Function EC pushed
+Write code -> Parse (AST) -> Create Global EC -> Execute
+Function call -> Create Function EC -> Push frame
+Return/throw -> Pop frame -> Resume caller
+Async callback -> scheduled -> later: new Function EC pushed
 
 ```

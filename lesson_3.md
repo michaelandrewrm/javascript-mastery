@@ -58,7 +58,7 @@ Why?
 Memory before execution:
 
 ```
-sayHi → undefined
+sayHi -> undefined
 ```
 
 So at the first call, sayHi isn’t a function yet.
@@ -107,7 +107,7 @@ Phase 1: Creation
 - Global Execution Context (GEC) created
   ```
   Memory:
-  outer → <function>
+  outer -> <function>
   ```
 
 Phase 2: Execution
@@ -151,14 +151,14 @@ Memory:
 
 ```
 Global Memory:
-  outer → <function>
+  outer -> <function>
 
 outer Memory:
-  a → 10
-  inner → <function>
+  a -> 10
+  inner -> <function>
 
 inner Memory:
-  b → 20
+  b -> 20
 ```
 
 ## 🧭 3. Lexical Scope and Environment Chains
@@ -225,7 +225,7 @@ outer();
 Resolution Path for globalVar:
 
 ```
-inner LE → outer LE → global LE → found!
+inner LE -> outer LE -> global LE -> found!
 ```
 
 ## 🧱 4. Visualizing Nested Scopes
@@ -256,13 +256,13 @@ Each function has a [[Environment]] reference to its parent scope — stored int
 
 Inside V8:
 
-- Parser builds AST → creates function objects
+- Parser builds AST -> creates function objects
 - Each function object stores a hidden link: [[Environment]]
 - On execution:
   - The engine creates a Lexical Environment Record
   - It binds variables and stores the reference to its outer environment
 - Scope resolution uses environment chain traversal
-- When a variable is no longer reachable → eligible for GC
+- When a variable is no longer reachable -> eligible for GC
 
 ## 📚 6. Terminology Glossary
 

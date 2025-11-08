@@ -6,7 +6,7 @@ By the end of this lesson, you’ll understand:
 1. What happens when you write and run JavaScript — from source code to execution.
 2. The difference between compilation and interpretation in JavaScript.
 3. How the V8 engine (used in Chrome and Node.js) runs your code.
-4. The complete lifecycle: Parsing → AST → Compilation → Execution.
+4. The complete lifecycle: Parsing -> AST -> Compilation -> Execution.
 5. How the call stack and memory behave step-by-step.
 
 ---
@@ -27,7 +27,7 @@ Let's walk through it:
 ```
 Your Source Code
     ↓
-Lexing → Parsing → AST → Compilation → Execution
+Lexing -> Parsing -> AST -> Compilation -> Execution
 ```
 
 ## ⚙️ 2. Compilation vs Interpretation
@@ -242,13 +242,13 @@ Hi!
 ```
 Source Code
    ↓
-[ Parser ] → AST
+[ Parser ] -> AST
    ↓
-[ Ignition ] → Bytecode → Run
+[ Ignition ] -> Bytecode -> Run
    ↓
-[ TurboFan ] → Optimized Machine Code
+[ TurboFan ] -> Optimized Machine Code
    ↓
-[ Call Stack + Heap ] → Execution
+[ Call Stack + Heap ] -> Execution
 ```
 
 JavaScript isn't "interpreted line by line" - it's parsed, compiled, executed, and optimized in a dynamic, multi-phase pipeline.
