@@ -7,10 +7,10 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 
 [Lesson 1: The JavaScript Execution Model](lesson_1.md)
 
-- What happens from writing a script -> to it running.
+- What happens from writing a script → to it running.
 - Compilation vs Interpretation.
 - The role of the V8 engine.
-- Phases: Parsing -> AST creation -> Compilation -> Execution.
+- Phases: Parsing → AST creation → Compilation → Execution.
 - Code Demo: Simple console program; trace how it’s executed.
 - Visual: Show call stack and memory.
 
@@ -31,7 +31,7 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - Function declarations vs expressions.
 - Function execution context.
 - Lexical scope and environment chains.
-- How scope resolution happens (LE -> VE -> outer).
+- How scope resolution happens (LE → VE → outer).
 - Visualization of nested scopes.
 
 ---
@@ -69,7 +69,7 @@ Goal: Master how JS handles concurrency, async code, and browser APIs.
 
 ---
 
-Lesson 7: Callbacks, Promises & Async/Await
+[Lesson 7: Callbacks, Promises & Async/Await](lesson_7.md)
 
 - Callback patterns and “callback hell.”
 - Promises as syntactic sugar + internal states.

@@ -6,7 +6,7 @@ By the end of this lesson, you’ll understand:
 1. What happens when you write and run JavaScript — from source code to execution.
 2. The difference between compilation and interpretation in JavaScript.
 3. How the V8 engine (used in Chrome and Node.js) runs your code.
-4. The complete lifecycle: Parsing -> AST -> Compilation -> Execution.
+4. The complete lifecycle: Parsing → AST → Compilation → Execution.
 5. How the call stack and memory behave step-by-step.
 
 ---
@@ -27,7 +27,7 @@ Let's walk through it:
 ```
 Your Source Code
     ↓
-Lexing -> Parsing -> AST -> Compilation -> Execution
+Lexing → Parsing → AST → Compilation → Execution
 ```
 
 ## ⚙️ 2. Compilation vs Interpretation
@@ -45,10 +45,10 @@ Lexing -> Parsing -> AST -> Compilation -> Execution
 Javascript is both compiled and interpreted.
 Modern engines like V8 use Just-In-Time (JIT) compilation strategy:
 
-1. Parsing: Source -> AST
-2. Interpreter (Ignition): Converts AST -> Bytecode, runs it immediately
+1. Parsing: Source → AST
+2. Interpreter (Ignition): Converts AST → Bytecode, runs it immediately
 3. Profiler: Detects "hot" code (frequently run functions)
-4. Optimizing compiler (TurboFan): Converts hot bytecode -> Machine Code
+4. Optimizing compiler (TurboFan): Converts hot bytecode → Machine Code
 5. De-optimizer: Reverts optimized code if assumptions break
    so JS begins interpreted, but "heats up" into compiled native code.
 
@@ -59,19 +59,19 @@ V8 = JavaScript Engine used in Chrome & Node.js
 ### Main Components:
 
 ```
-Parser -> Converts code to AST
-Ignition -> Interprets to bytecode
-TurboFan -> Optimizes to machine
+Parser → Converts code to AST
+Ignition → Interprets to bytecode
+TurboFan → Optimizes to machine
 Garbage Collector (Orinoco)
 Heap & Stack Memory
 ```
 
 Workflow:
 
-1. Parser -> Reads source, builds AST
-2. Ignition -> Translate AST -> Bytecode
-3. TurboFan -> Optimizes hot bytecode -> Native machine code
-4. Runtime -> Executes with memory management, Garbage Collector (GC), and event loop integration
+1. Parser → Reads source, builds AST
+2. Ignition → Translate AST → Bytecode
+3. TurboFan → Optimizes hot bytecode → Native machine code
+4. Runtime → Executes with memory management, Garbage Collector (GC), and event loop integration
 
 ## 💻 4. Code Demo
 
@@ -108,7 +108,7 @@ Program
 
 🧮 Phase 2: Compilation
 
-- Ignition compiles AST -> Bytecode instructions like:
+- Ignition compiles AST → Bytecode instructions like:
 
 ```js
 LoadConstant "hello, "
@@ -127,13 +127,13 @@ Return message
 
 Execution timeline:
 
-| Step | Action                                        | Stack                 | Memory                                                |
-| ---- | --------------------------------------------- | --------------------- | ----------------------------------------------------- |
-| 1.   | Parse & hoist `greet`                         | `Global()`            | `greet -> func`, `user -> uninit`, `output -> uninit` |
-| 2.   | Assign `user = "Ada"`                         | `Global()`            | `user -> "Ada"`                                       |
-| 3.   | Call `greet(user)`                            | `Global() -> greet()` | `name -> "Ada"`, `message -> "Hello, Ada!"`           |
-| 4.   | Return `"Hello, Ada!"`                        | `Global()`            | `output -> "Hello, Ada!"`                             |
-| 5.   | `console.log(output)` -> prints "Hello, Ada!" | `Global()`            | -                                                     |
+| Step | Action                                       | Stack                | Memory                                             |
+| ---- | -------------------------------------------- | -------------------- | -------------------------------------------------- |
+| 1.   | Parse & hoist `greet`                        | `Global()`           | `greet → func`, `user → uninit`, `output → uninit` |
+| 2.   | Assign `user = "Ada"`                        | `Global()`           | `user → "Ada"`                                     |
+| 3.   | Call `greet(user)`                           | `Global() → greet()` | `name → "Ada"`, `message → "Hello, Ada!"`          |
+| 4.   | Return `"Hello, Ada!"`                       | `Global()`           | `output → "Hello, Ada!"`                           |
+| 5.   | `console.log(output)` → prints "Hello, Ada!" | `Global()`           | -                                                  |
 
 ## 🧱 5. Visual Interpretation
 
@@ -155,10 +155,10 @@ Each **function call** pushes a frame; **each return** pops it.
 
 ```txt
 Memory
-greet -> <function>
-user -> "Ada"
-output -> "Hello, Ada!"
-message -> (temporary, inside greet)
+greet → <function>
+user → "Ada"
+output → "Hello, Ada!"
+message → (temporary, inside greet)
 ```
 
 ## 🔍 6. Behind the Hood (V8 Internals)
@@ -170,7 +170,7 @@ message -> (temporary, inside greet)
 
 2. Ignition (Interpreter)
 
-- Converts AST -> bytecode.
+- Converts AST → bytecode.
 - Executes bytecode line by line.
 - Collects runtime information (types, shapes).
 
@@ -229,7 +229,7 @@ At runtime:
 
 - Global Execution Context created
 - `sayHi` already defined
-- `sayHi()` is called -> pushes `sayHi()` to stack -> runs logs "Hi!" -> pops.
+- `sayHi()` is called → pushes `sayHi()` to stack → runs logs "Hi!" → pops.
 
 Output:
 
@@ -242,13 +242,13 @@ Hi!
 ```
 Source Code
    ↓
-[ Parser ] -> AST
+[ Parser ] → AST
    ↓
-[ Ignition ] -> Bytecode -> Run
+[ Ignition ] → Bytecode → Run
    ↓
-[ TurboFan ] -> Optimized Machine Code
+[ TurboFan ] → Optimized Machine Code
    ↓
-[ Call Stack + Heap ] -> Execution
+[ Call Stack + Heap ] → Execution
 ```
 
 JavaScript isn't "interpreted line by line" - it's parsed, compiled, executed, and optimized in a dynamic, multi-phase pipeline.

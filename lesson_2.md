@@ -46,7 +46,7 @@ undefined
 ReferenceError: Cannot access 'b' before initialization
 ```
 
-## ⚙️ 2. Step-by-Step Breakdown (Creation -> Execution)
+## ⚙️ 2. Step-by-Step Breakdown (Creation → Execution)
 
 ### 🏗️ Phase 1: Creation (Compile Time)
 
@@ -57,9 +57,9 @@ When the JS engine parses this script:
 
 ```
 Memory Allocation (Before Execution)
-a -> undefined          // var is hoisted & initialized
-b -> <uninitialized>    // let exists but not initialized
-b -> <uninitialized>    // const exists but not initialized
+a → undefined          // var is hoisted & initialized
+b → <uninitialized>    // let exists but not initialized
+b → <uninitialized>    // const exists but not initialized
 ```
 
 At this stage:
@@ -73,8 +73,8 @@ The **TDZ** is the period between the start of scope creation and the line of de
 
 The engine executes line-by-line:
 
-1. `console.log(a)` -> reads `a` = `undefined`
-2. `console.log(b)` -> tries to read before initialization ❌ **ReferenceError**
+1. `console.log(a)` → reads `a` = `undefined`
+2. `console.log(b)` → tries to read before initialization **ReferenceError**
 3. Once it reaches `let b = 2`, `b` is initialized.
 4. Then `const c = 3` initializes `c`.
 
@@ -85,9 +85,9 @@ The engine executes line-by-line:
 ```
 Before Execution
 Global Memory:
-    a -> undefined
-    b -> TDZ
-    c -> TDZ
+    a → undefined
+    b → TDZ
+    c → TDZ
 
 During Execution
     a = 1
@@ -127,8 +127,8 @@ Both `x` and `y` point to **separate copies** in memory.
 
 ```
 Memory (stack):
-x -> 10
-y -> 20
+x → 10
+y → 20
 ```
 
 ### 🔸 Reference Types (stored in heap)
@@ -150,11 +150,11 @@ Both `user1` and `user2` point to the same heap object.
 
 ```
 Stack:
-user1 -> 0x100 (pointer)
-user2 -> 0x100 (pointer)
+user1 → 0x100 (pointer)
+user2 → 0x100 (pointer)
 
 Heap:
-0x100 -> { name: "Grace" }
+0x100 → { name: "Grace" }
 ```
 
 ## 🧬 5. Hoisting Deep Dive
@@ -166,7 +166,7 @@ What actually happens:
 - Variables and functions are registered in memory before code runs.
 - Functions are hoisted with their definitions.
 - `var` is hoisted but initialized with `undefined`.
-- `let`/`const` are hoisted but not initialized -> remain in TDZ.
+- `let`/`const` are hoisted but not initialized → remain in TDZ.
 
 ### 🧩 Example
 
@@ -187,9 +187,9 @@ let y = 10;
 Memory before execution:
 
 ```
-sayHi -> <function>
-x -> undefined
-y -> TDZ
+sayHi → <function>
+x → undefined
+y → TDZ
 ```
 
 ## 🧮 6. The Temporal Dead Zone (TDZ)
@@ -219,7 +219,7 @@ The engine periodically reclaims memory that's no longer reachable.
 
 ```js
 let user = { name: "Ada" };
-user = null; // original object now unreachable -> elegible for GC
+user = null; // original object now unreachable → elegible for GC
 ```
 
 ### 🧮 Reference Counting (simplified mental model)
@@ -228,9 +228,9 @@ V8 doesn't use pure reference counting, but the idea helps:
 
 ```
 object { name: "Ada" }
--> reference count = 1 (user)
+→ reference count = 1 (user)
 user = null
--> reference count = 0 -> Garbage Collector frees memory
+→ reference count = 0 → Garbage Collector frees memory
 ```
 
 ### 🧠 In V8 (modern engines):
@@ -258,13 +258,13 @@ user = null
 Pitfalls:
 
 1. Assuming `var` and `let` behave the same
-   -> `var` is function-scoped; `let`/`const` are block-scoped.
+   → `var` is function-scoped; `let`/`const` are block-scoped.
 2. Accessing `let` before declaration
-   -> TDZ ReferenceError surprises many beginners.
+   → TDZ ReferenceError surprises many beginners.
 3. Confusing reference copies with value copies
-   -> Objects are referenced; primitives are copied.
+   → Objects are referenced; primitives are copied.
 4. Memory leaks from closures or DOM references
-   -> Retaining references prevents garbage collection.
+   → Retaining references prevents garbage collection.
 
 ### Best Practices:
 

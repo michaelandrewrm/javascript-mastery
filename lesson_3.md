@@ -36,13 +36,13 @@ Why?
 Memory before execution:
 
 ```
-greet -> <function>
+greet → <function>
 ```
 
 ### 🧩 Function Expression
 
 ```js
-sayHi(); // ❌ TypeError: sayHi is not a function
+sayHi(); //  TypeError: sayHi is not a function
 
 var sayHi = function () {
   console.log("Hi!");
@@ -52,13 +52,13 @@ var sayHi = function () {
 Why?
 
 - During hoisting:
-  - `var sayHi` is created -> `undefined`
+  - `var sayHi` is created → `undefined`
   - The function itself isn't assigned until runtime
 
 Memory before execution:
 
 ```
-sayHi -> undefined
+sayHi → undefined
 ```
 
 So at the first call, sayHi isn’t a function yet.
@@ -107,20 +107,20 @@ Phase 1: Creation
 - Global Execution Context (GEC) created
   ```
   Memory:
-  outer -> <function>
+  outer → <function>
   ```
 
 Phase 2: Execution
 
 1. `outer()` is called
-   -> Pushes a Function Execution Context (FEC) for `outer` onto the stack
+   → Pushes a Function Execution Context (FEC) for `outer` onto the stack
    ```
    Call Stack:
    [outer()]
    [Global()]
    ```
 2. `inner()` is called
-   -> Pushes another FEC for `inner`
+   → Pushes another FEC for `inner`
    ```
    Call Stack:
    [inner()]
@@ -129,8 +129,8 @@ Phase 2: Execution
    ```
 3. `console.log(a + b)`
    - Engine looks for `a`:
-     - Not in `inner`'s VE -> go to outer lexical scope -> found in `outer`.
-   - Adds 10 + 20 -> prints 30
+     - Not in `inner`'s VE → go to outer lexical scope → found in `outer`.
+   - Adds 10 + 20 → prints 30
 4. `inner()` returns, pops off stack
 5. `outer()` returns, pops off stack
 
@@ -151,14 +151,14 @@ Memory:
 
 ```
 Global Memory:
-  outer -> <function>
+  outer → <function>
 
 outer Memory:
-  a -> 10
-  inner -> <function>
+  a → 10
+  inner → <function>
 
 inner Memory:
-  b -> 20
+  b → 20
 ```
 
 ## 🧭 3. Lexical Scope and Environment Chains
@@ -201,7 +201,7 @@ When JS looks up a variable:
 1. It checks the current execution context's environment.
 2. If not found, moves to the user lexical environment.
 3. Continues upward until reaching global scope.
-4. If not found -> ReferenceError.
+4. If not found → ReferenceError.
 
 ### 🧩 Example with Resolution Steps
 
@@ -225,7 +225,7 @@ outer();
 Resolution Path for globalVar:
 
 ```
-inner LE -> outer LE -> global LE -> found!
+inner LE → outer LE → global LE → found!
 ```
 
 ## 🧱 4. Visualizing Nested Scopes
@@ -256,13 +256,13 @@ Each function has a [[Environment]] reference to its parent scope — stored int
 
 Inside V8:
 
-- Parser builds AST -> creates function objects
+- Parser builds AST → creates function objects
 - Each function object stores a hidden link: [[Environment]]
 - On execution:
   - The engine creates a Lexical Environment Record
   - It binds variables and stores the reference to its outer environment
 - Scope resolution uses environment chain traversal
-- When a variable is no longer reachable -> eligible for GC
+- When a variable is no longer reachable → eligible for GC
 
 ## 📚 6. Terminology Glossary
 
@@ -283,21 +283,21 @@ Inside V8:
 Pitfalls
 
 1. Confusing definition vs. call site
-   -> Functions close over where they’re defined, not where they’re called.
+   → Functions close over where they’re defined, not where they’re called.
 2. Using var inside functions
-   -> var ignores block scope; can lead to unexpected sharing of variables.
+   → var ignores block scope; can lead to unexpected sharing of variables.
 3. Accidentally shadowing variables
-   -> Redeclaring with let or var inside a nested scope hides outer variables.
+   → Redeclaring with let or var inside a nested scope hides outer variables.
 4. Memory leaks via closures
-   -> Functions retaining large objects from outer scopes can prevent garbage collection.
+   → Functions retaining large objects from outer scopes can prevent garbage collection.
 
-### Best Practices
+### ✅ Best Practices
 
-✅ Use function declarations for reusable named functions
-✅ Use function expressions or arrow functions for inline callbacks
-✅ Prefer block scope (let/const) inside functions
-✅ Avoid deep nesting when possible — consider early returns
-✅ Understand closure behavior to manage memory intentionally
+Use function declarations for reusable named functions
+Use function expressions or arrow functions for inline callbacks
+Prefer block scope (let/const) inside functions
+Avoid deep nesting when possible — consider early returns
+Understand closure behavior to manage memory intentionally
 
 ## 🧩 8. Practice Tasks
 

@@ -71,32 +71,32 @@ console.log("D");
 
 Step 1 — Call Stack Starts
 
-- console.log("A") -> runs immediately -> prints “A”
+- console.log("A") → runs immediately → prints “A”
 
 Step 2 — Timer Scheduled
 
 - setTimeout(..., 0)
-  -> Browser’s Web API Timer handles it (not V8)
-  -> Callback (“B”) placed in Callback Queue (macrotask) after delay
+  → Browser’s Web API Timer handles it (not V8)
+  → Callback (“B”) placed in Callback Queue (macrotask) after delay
 
 Step 3 — Promise Scheduled
 
 - Promise.resolve().then(...)
-  -> Promise resolved immediately
-  -> .then() callback goes into Microtask Queue
+  → Promise resolved immediately
+  → `.then()` callback goes into Microtask Queue
 
 Step 4 — console.log("D")
 
-- Runs immediately -> prints “D”
+- Runs immediately → prints “D”
 
 Step 5 — Call Stack Empty
 
 - Event loop checks Microtask Queue first
-  - Runs console.log("C") -> prints “C”
+  - Runs console.log("C") → prints “C”
 - Then moves to Macrotask Queue
-  - Runs console.log("B") -> prints “B”
+  - Runs console.log("B") → prints “B”
 
-✅ Final Output:
+Final Output:
 
 ```
 A
@@ -138,9 +138,9 @@ TIMER
 
 ```
 
-- “SYNC” -> main stack
-- Promises -> microtasks -> run before timers
-- Timer -> macrotask -> runs last
+- “SYNC” → main stack
+- Promises → microtasks → run before timers
+- Timer → macrotask → runs last
 
 ## 4. 🧩 Visualization: The Event Loop in Motion
 
@@ -175,11 +175,11 @@ Macrotask Queue: [setTimeout callback]
 Stage 4 — Event Loop Tick
 
 ```
--> Run all Microtasks:
-    Promise.then() -> executes -> "C"
+→ Run all Microtasks:
+    Promise.then() → executes → "C"
 
--> Then run one Macrotask:
-    setTimeout callback() -> executes -> "B"
+→ Then run one Macrotask:
+    setTimeout callback() → executes → "B"
 ```
 
 ## 5. 🧠 Event Loop in Browsers vs Node.js
@@ -249,7 +249,7 @@ immediate
 - Explains why Promises resolve before timers
 - Crucial for performance tuning & avoiding race conditions
 
-⚠️ Common Pitfalls
+### ⚠️ Common Pitfalls
 
 1. Blocking the main thread
 
@@ -257,7 +257,7 @@ immediate
    while (true) {} // freezes everything
    ```
 
-   No event loop progress -> browser locks up.
+   No event loop progress → browser locks up.
 
 2. Assuming setTimeout(0) runs “immediately”
    It waits for the current stack + all microtasks first.
@@ -265,7 +265,7 @@ immediate
 3. Forgetting microtask priority
    Promise-heavy code can “starve” the UI if you never yield back to the macrotask phase.
 
-✅ Best Practices
+### ✅ Best Practices
 
 - Never block the main thread (split heavy work using setTimeout, requestIdleCallback, or Web Workers)
 - Know that Promises > Timers in scheduling

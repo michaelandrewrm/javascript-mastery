@@ -31,32 +31,32 @@ Creation Phase (Parsing):
 - JS scans the code and builds an environment record:
   ```
   Memory:
-    add -> <function>
-    x -> undefined;
+    add → <function>
+    x → undefined;
   ```
 - Declarations are “hoisted” to the top of their scope.
 
 Execution Phase:
 
-- `console.log(x)` -> `undefined` ✅
-- `console.log(add(2,3))` -> 5 ✅
+- `console.log(x)` → `undefined`
+- `console.log(add(2,3))` → 5
 - Then `x = 10` assigns value
 
 Key Rule Summary
 
 | Type                   | Hoisted? | Initialized? | Example                  |
 | ---------------------- | -------- | ------------ | ------------------------ |
-| `var`                  | ✅ yes   | ✅ undefined | `var x`                  |
-| `let` / `const`        | ✅ yes   | ❌ TDZ       | `let y`                  |
-| `function` declaration | ✅ yes   | ✅ with body | `function f() {}`        |
-| `function` expression  | ✅ no    | —            | `const f = function(){}` |
+| `var`                  | yes      | undefined    | `var x`                  |
+| `let` / `const`        | yes      | TDZ          | `let y`                  |
+| `function` declaration | yes      | with body    | `function f() {}`        |
+| `function` expression  | no       | —            | `const f = function(){}` |
 
 Mental Model:
 
 ```
 During Creation Phase:
-x -> undefined
-add -> <function>
+x → undefined
+add → <function>
 ```
 
 ✅ Function declarations are fully hoisted
@@ -86,7 +86,7 @@ inc(); // 2
 
 ### 🧠 Step-by-Step Breakdown
 
-1. `outer()` called -> new Execution Context created
+1. `outer()` called → new Execution Context created
 
    - `counter = 0`
    - `increment` function created
@@ -96,7 +96,7 @@ inc(); // 2
 2. Global memory now holds:
 
 ```
-inc -> <function increment>
+inc → <function increment>
 ```
 
 3. Even though `outer()` has finished, `increment` still remembers `counter`.
@@ -106,12 +106,12 @@ inc -> <function increment>
 
 ```
 Global LE:
-  outer -> <function>
-  inc -> <function increment>
+  outer → <function>
+  inc → <function increment>
 
 outer LE (retained by closure):
-  counter -> 2
-  increment -> <function>
+  counter → 2
+  increment → <function>
 ```
 
 Each time `inc()` runs, it accesses and updates `counter` inside its preserved lexical environment.
@@ -122,7 +122,7 @@ When V8 creates a function, it attaches a hidden reference:
 
 ```
 Function Object:
-  [[Environment]] -> pointer to parent Lexical Environment
+  [[Environment]] → pointer to parent Lexical Environment
 ```
 
 When outer() finishes:
@@ -136,12 +136,12 @@ Memory Diagram
 ```
 Stack (Call Stack):
 [Global()]
-[outer()] -> returns increment()
+[outer()] → returns increment()
 ↑
 closure pointer
 ↓
 Heap (Persistent Environment):
-  counter -> 2
+  counter → 2
 ```
 
 So:
@@ -177,7 +177,7 @@ Memory:
 
 ```
 Heap:
-  handleClick.[[Environment]] -> { clicks: 3, btn: <button> }
+  handleClick.[[Environment]] → { clicks: 3, btn: <button> }
 ```
 
 ⚠️ Potential Leak:
@@ -207,9 +207,9 @@ How this works:
 Call stack visualization:
 
 ```
-Time 0: fetchData() pushed -> runs -> returns -> popped
+Time 0: fetchData() pushed → runs → returns → popped
 Heap: closure keeps url alive
-Time 1000ms: callback pushed -> logs -> popped
+Time 1000ms: callback pushed → logs → popped
 ```
 
 ### 🔹 Example C — Function Factory
@@ -231,8 +231,8 @@ console.log(triple(5)); // 15
 Each returned function has its own closure environment:
 
 ```
-double.[[Environment]] -> { multiplier: 2 }
-triple.[[Environment]] -> { multiplier: 3 }
+double.[[Environment]] → { multiplier: 2 }
+triple.[[Environment]] → { multiplier: 3 }
 ```
 
 They’re distinct memory spaces.
@@ -256,7 +256,7 @@ function start() {
 ```
 
 If the closure doesn’t use bigArray, V8 can release it.
-But if you accidentally reference it inside the closure -> the large array stays in memory until the listener is removed.
+But if you accidentally reference it inside the closure → the large array stays in memory until the listener is removed.
 
 Fix:
 Detach event handlers or set large unused variables to null once done.
@@ -268,7 +268,7 @@ Function Call Stack:
 
 [Global()]
   ↓
-outer() --> returns inner()
+outer() -→ returns inner()
   ↓
 inner() still references outer's environment
 
@@ -276,7 +276,7 @@ Memory:
 Heap:
   [[Environment]]: { counter: 2 }
 
-When inner() garbage collected -> environment freed.
+When inner() garbage collected → environment freed.
 ```
 
 ## 7. Terminology Glossary
@@ -294,7 +294,7 @@ When inner() garbage collected -> environment freed.
 
 ## 8. Common Pitfalls & Best Practices
 
-❌ Pitfalls
+Pitfalls
 
 1. Accidental shared state
 
@@ -302,7 +302,7 @@ When inner() garbage collected -> environment freed.
    for (var i = 0; i < 3; i++) {
      setTimeout(() => console.log(i), 100);
    }
-   // -> 3, 3, 3 (not 0,1,2)
+   // → 3, 3, 3 (not 0,1,2)
    ```
 
    Reason: single shared `i` variable (var is function-scoped).
@@ -313,12 +313,12 @@ When inner() garbage collected -> environment freed.
 3. Misunderstanding hoisting
    Expecting let or const to behave like var.
 
-✅ Best Practices
+Best Practices
 
 - Prefer let / const — block-scoped and safer for closures
 - Avoid referencing unnecessary outer variables
 - Explicitly remove event listeners when cleaning up
-- For loops with async callbacks -> create new scope:
+- For loops with async callbacks → create new scope:
   ```js
   for (let i = 0; i < 3; i++) {
     setTimeout(() => console.log(i), 100); // prints 0,1,2
