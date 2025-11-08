@@ -26,7 +26,7 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 
 ---
 
-Lesson 3: Functions and Scope
+[Lesson 3: Functions and Scope](lesson_3.md)
 
 - Function declarations vs expressions.
 - Function execution context.
@@ -36,7 +36,7 @@ Lesson 3: Functions and Scope
 
 ---
 
-Lesson 4: The Call Stack and Execution Contexts
+[Lesson 4: The Call Stack and Execution Contexts](lesson_4.md)
 
 - Step-by-step execution context creation.
 - Stack frames in V8.
