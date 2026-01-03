@@ -1,9 +1,8 @@
-🧠 JavaScript Mastery Curriculum: From Fundamentals to Engine Internals
+# 🧠 JavaScript Mastery Curriculum: From Fundamentals to Engine Internals
 
-📘 Level 1: Core Foundations — How JavaScript Really Works
+## 📘 Level 1: Core Foundations — How JavaScript Really Works
+
 Goal: Build mental models of how JS runs code — memory, execution context, scope, and the call stack.
-
----
 
 [Lesson 1: The JavaScript Execution Model](lesson_1.md)
 
@@ -14,8 +13,6 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - Code Demo: Simple console program; trace how it’s executed.
 - Visual: Show call stack and memory.
 
----
-
 [Lesson 2: Variables, Data Types, and Memory](lesson_2.md)
 
 - var, let, const — how they differ under the hood.
@@ -23,8 +20,6 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - How JS stores values in stack vs heap.
 - Hoisting and the Temporal Dead Zone (TDZ).
 - Garbage collection and reference counting basics.
-
----
 
 [Lesson 3: Functions and Scope](lesson_3.md)
 
@@ -34,8 +29,6 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - How scope resolution happens (LE → VE → outer).
 - Visualization of nested scopes.
 
----
-
 [Lesson 4: The Call Stack and Execution Contexts](lesson_4.md)
 
 - Step-by-step execution context creation.
@@ -44,8 +37,6 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - Call stack overflow demonstration.
 - Visualization: Stack growth & pop mechanics.
 
----
-
 [Lesson 5: Hoisting, Closures & Memory Persistence](lesson_5.md)
 
 - Deep dive into hoisting rules.
@@ -53,12 +44,9 @@ Goal: Build mental models of how JS runs code — memory, execution context, sco
 - How closures are implemented in memory.
 - Real-world examples (event handlers, async tasks).
 
----
+## 📗 Level 2: Advanced Core — The Event Loop and Asynchronous JS
 
-📗 Level 2: Advanced Core — The Event Loop and Asynchronous JS
 Goal: Master how JS handles concurrency, async code, and browser APIs.
-
----
 
 [Lesson 6: The Event Loop Explained Visually](lesson_6.md)
 
@@ -66,8 +54,6 @@ Goal: Master how JS handles concurrency, async code, and browser APIs.
 - The call stack + callback queue + microtask queue.
 - Macrotasks vs microtasks.
 - Event loop in browsers vs Node.js.
-
----
 
 [Lesson 7: Callbacks, Promises & Async/Await](lesson_7.md)
 
@@ -77,29 +63,22 @@ Goal: Master how JS handles concurrency, async code, and browser APIs.
 - Behind the hood: microtask queue management.
 - Error propagation in async code.
 
----
-
 [Lesson 8: Timers, Tasks, and the Browser APIs](lesson_8.md)
 
 - How setTimeout, setInterval, and requestAnimationFrame integrate with the event loop.
 - The role of the Web APIs.
 - Example visualization of async execution order.
 
----
+## 📙 Level 3: Deep Internals — Objects, Prototypes, and Classes
 
-📙 Level 3: Deep Internals — Objects, Prototypes, and Classes
 Goal: Fully understand how JavaScript handles object-oriented behavior and inheritance.
 
----
-
-Lesson 9: Objects and Property Descriptors
+[Lesson 9: Objects and Property Descriptors](lesson_9.md)
 
 - Internal structure of JS objects.
 - Property attributes (configurable, enumerable, writable).
 - Object cloning and shallow vs deep copies.
 - Visual: object in memory and reference behavior.
-
----
 
 Lesson 10: Prototypes and the Prototype Chain
 
@@ -108,8 +87,6 @@ Lesson 10: Prototypes and the Prototype Chain
 - How JS finds methods up the chain.
 - Visualization: object chain traversal.
 
----
-
 Lesson 11: ES6 Classes and Inheritance
 
 - Syntactic sugar over prototypes.
@@ -117,20 +94,15 @@ Lesson 11: ES6 Classes and Inheritance
 - Super calls and constructor behavior.
 - Under-the-hood equivalent of class syntax.
 
----
+## 📒 Level 4: Modern JS & Advanced Mechanisms
 
-📒 Level 4: Modern JS & Advanced Mechanisms
 Goal: Learn how modern JS features and internals optimize runtime performance.
-
----
 
 Lesson 12: Modules and the JS Runtime
 
 - ES Modules vs CommonJS.
 - Import/export behavior and module scope.
 - How bundlers and runtime loaders handle modules.
-
----
 
 Lesson 13: Memory Management and the Garbage Collector
 
@@ -139,8 +111,6 @@ Lesson 13: Memory Management and the Garbage Collector
 - How circular references are handled.
 - Performance tuning via GC awareness.
 
----
-
 Lesson 14: JIT Compilation & Performance
 
 - How V8 optimizes code via Ignition & TurboFan.
@@ -148,12 +118,9 @@ Lesson 14: JIT Compilation & Performance
 - Why de-optimizations occur.
 - Performance measurement tools and coding tips.
 
----
+## 📔 Level 5: Expert Topics & Real-World Mastery
 
-📔 Level 5: Expert Topics & Real-World Mastery
 Goal: Apply internal knowledge to real-world challenges, debugging, and performance optimization.
-
----
 
 Lesson 15: Event Delegation & The DOM Connection
 
@@ -166,14 +133,10 @@ Lesson 16: Asynchronous Patterns in the Wild
 - Practical API request handling patterns.
 - Error management strategies.
 
----
-
 Lesson 17: Debugging & Profiling
 
 - Using DevTools to inspect call stacks and memory.
 - Breakpoints, performance profiling, async tracing.
-
----
 
 Lesson 18: Deep Dive into Engine Internals
 
@@ -182,26 +145,13 @@ Lesson 18: Deep Dive into Engine Internals
 - JIT compilation in action.
 - How engines differ (V8, SpiderMonkey, JavaScriptCore).
 
----
-
 Lesson 19: Design Patterns in JavaScript
 
 - Singleton, Observer, Factory, Module patterns.
 - Understanding patterns in JS context (prototypes & closures).
-
----
 
 Lesson 20: Putting It All Together — The JS Mastery Project
 
 - Apply everything to build a small but complex JS system.
 - Trace its execution model manually.
 - Identify performance bottlenecks and memory leaks.
-
----
-
-🎓 Bonus Add-ons
-
-- Mini quizzes at the end of each level.
-- Hands-on coding exercises.
-- Deep-dive visual maps (execution context tree, memory map, prototype chain).
-- Real-world code analysis (reading open-source JS and explaining the internals).
