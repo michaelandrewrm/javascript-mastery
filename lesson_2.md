@@ -1,6 +1,7 @@
-# 🧩 LESSON 2 — Variables, Data Types, and Memory
+# LESSON 2 — Variables, Data Types, and Memory
 
-🎯 Learning Goals
+**Learning Goals:**
+
 By the end of this lesson, you’ll understand:
 
 1. How var, let, and const actually work in memory
@@ -9,7 +10,7 @@ By the end of this lesson, you’ll understand:
 4. What the Temporal Dead Zone (TDZ) is and why it exists
 5. How garbage collection works conceptually (reference counting & reachability)
 
-## 🧠 1. Variable Declaration in JavaScript
+## 1. Variable Declaration in JavaScript
 
 JavaScript provides three keywords variables:
 
@@ -19,7 +20,7 @@ let age = 30;
 const PI = 3.14;
 ```
 
-At first glance, they look similar - but under the hood, they behave very differently.
+At first glance, they look similar, but under the hood, they behave very differently.
 
 | Keyword | Scope          | Hoisted? | Initialized? | Mutable? | TDZ? |
 | ------- | -------------- | -------- | ------------ | -------- | ---- |
@@ -46,9 +47,9 @@ undefined
 ReferenceError: Cannot access 'b' before initialization
 ```
 
-## ⚙️ 2. Step-by-Step Breakdown (Creation → Execution)
+## 2. Step-by-Step Breakdown (Creation → Execution)
 
-### 🏗️ Phase 1: Creation (Compile Time)
+### Phase 1: Creation (Compile Time)
 
 When the JS engine parses this script:
 
@@ -65,11 +66,11 @@ b → <uninitialized>    // const exists but not initialized
 At this stage:
 
 - `a` is in **Variable Environment** (VE) with `undefined`
-- `b` and `c` are in **Lexical Environment** (LE) but in the **Temporal Dead Zone**
+- `b` and `c` are in **Lexical Environment** (LE) but in the **Temporal Dead Zone** (TDZ)
 
 The **TDZ** is the period between the start of scope creation and the line of declaration.
 
-### 🔥 Phase 2: Execution (Run Time)
+### Phase 2: Execution (Run Time)
 
 The engine executes line-by-line:
 
@@ -78,36 +79,36 @@ The engine executes line-by-line:
 3. Once it reaches `let b = 2`, `b` is initialized.
 4. Then `const c = 3` initializes `c`.
 
-## 🧩 3. Visual Representation
+## 3. Visual Representation
 
-### 📦 Memory Model
+### Memory Model
 
 ```
 Before Execution
 Global Memory:
-    a → undefined
-    b → TDZ
-    c → TDZ
+   a → undefined
+   b → TDZ
+   c → TDZ
 
 During Execution
-    a = 1
-    b = 2
-    c = 3
+   a = 1
+   b = 2
+   c = 3
 ```
 
-### 🧠 Call Stack
+### Call Stack
 
 ```
 Call Stack:
 [top]
-|   console.log()
-|   Global()
-|________________
+│   console.log()
+│   Global()
+└────────────────────
 ```
 
-## ⚛️ 4. Primitive vs Reference Types
+## 4. Primitive vs Reference Types
 
-### 🔹 Primitive Types (stored in stack)
+### Primitive Types (stored in stack)
 
 - `string`, `number`, `boolean`, `null`, `undefined`, `symbol`, and `bigint`.
 
@@ -123,7 +124,7 @@ console.log(x); // 10
 console.log(y); // 20
 ```
 
-Both `x` and `y` point to **separate copies** in memory.
+Both `x` and `y` point to separate copies in memory.
 
 ```
 Memory (stack):
@@ -131,7 +132,7 @@ x → 10
 y → 20
 ```
 
-### 🔸 Reference Types (stored in heap)
+### Reference Types (stored in heap)
 
 - `object`, `array`, and `function`.
 
@@ -157,9 +158,9 @@ Heap:
 0x100 → { name: "Grace" }
 ```
 
-## 🧬 5. Hoisting Deep Dive
+## 5. Hoisting Deep Dive
 
-Hoisting = moving declarations to the top of their scope **during compilation**.
+Hoisting = moving declarations to the top of their scope during compilation.
 
 What actually happens:
 
@@ -171,7 +172,7 @@ What actually happens:
 ### 🧩 Example
 
 ```js
-sayHi(); // works
+sayHi(); // This works
 
 function sayHi() {
   console.log("Hi!");
@@ -192,37 +193,35 @@ x → undefined
 y → TDZ
 ```
 
-## 🧮 6. The Temporal Dead Zone (TDZ)
+## 6. The Temporal Dead Zone (TDZ)
 
 TDZ is the "no-access" period between scope creation and the actual line where a variable is declared.
 
 ```js
-{
-  // TDZ starts here
-  console.log(value); // ReferenceError
-  let value = 10; // TDZ ends here
-  console.log(value); // 10
-}
+// TDZ starts here
+console.log(value); // ReferenceError
+let value = 10; // TDZ ends here
+console.log(value); // 10
 ```
 
 This mechanism prevents accidental use of variables before they're safely initialized - making you code more predictable.
 
-## 🧹 7. Garbage Collection Basics
+## 7. Garbage Collection Basics
 
 JavaScript uses **automatic memory management** - you never manually free memory.
 The engine periodically reclaims memory that's no longer reachable.
 
-### 🔄 Concept: Reachability
+### Concept: Reachability
 
 - Reachable values: values accessible from the root (global scope, call stack, closures).
 - Unreachable values: detached objects that can't be reached anymore.
 
 ```js
 let user = { name: "Ada" };
-user = null; // original object now unreachable → elegible for GC
+user = null; // original object now unreachable → elegible for Garbage Collection
 ```
 
-### 🧮 Reference Counting (simplified mental model)
+### Reference Counting (simplified mental model)
 
 V8 doesn't use pure reference counting, but the idea helps:
 
@@ -233,14 +232,14 @@ user = null
 → reference count = 0 → Garbage Collector frees memory
 ```
 
-### 🧠 In V8 (modern engines):
+### In V8 (modern engines):
 
 - Young Generation (New Space): short-lived objects
 - Old Generation (Old Space): long'live ones promoted over time.
 - Mark-and-sweep algorithm: marks reachable objects, sweeps the rest.
 - Generational GC: collects short-lived and long-lived objects differently for efficiency.
 
-## 📚 8. Terminology Glossary
+## 8. Terminology Glossary
 
 | Term                         | Definition                                                             |
 | ---------------------------- | ---------------------------------------------------------------------- |
@@ -253,20 +252,20 @@ user = null
 | **Reachability**             | Determines if data is still accessible and thus not garbage collected. |
 | **Mark-and-Sweep**           | GC algorithm marking live objects, sweeping dead ones.                 |
 
-## ⚠️ 9. Common Pitfalls & Best Practices
+## 9. Common Pitfalls:
 
-Pitfalls:
+- Assuming `var` and `let` behave the same
+  - `var` is function-scoped
+  - `let`/`const` are block-scoped.
+- Accessing `let` before declaration
+  - TDZ ReferenceError surprises many beginners.
+- Confusing reference copies with value copies
+  - Objects are referenced
+  - Primitives are copied.
+- Memory leaks from closures or DOM references
+  - Retaining references prevents garbage collection.
 
-1. Assuming `var` and `let` behave the same
-   → `var` is function-scoped; `let`/`const` are block-scoped.
-2. Accessing `let` before declaration
-   → TDZ ReferenceError surprises many beginners.
-3. Confusing reference copies with value copies
-   → Objects are referenced; primitives are copied.
-4. Memory leaks from closures or DOM references
-   → Retaining references prevents garbage collection.
-
-### Best Practices:
+## 10. Best Practices:
 
 - Use `const` by default - prevents accidental reassignment
 - Use `let` when you must reassign
@@ -274,9 +273,9 @@ Pitfalls:
 - Break object references when done: `obj = null`
 - Initialize variables before using them
 
-## 🧩 10. Practice Tasks
+## 11. Practice Tasks
 
-### 🧠 Task 1 — Predict the Output
+### Task 1 — Predict the Output
 
 ```js
 console.log(a);
@@ -287,7 +286,7 @@ let b = 20;
 
 Explain line-by-line what’s happening in memory.
 
-### 🧠 Task 2 — Stack vs Heap
+### Task 2 — Stack vs Heap
 
 Predict what happens:
 
@@ -306,7 +305,7 @@ console.log(obj1.val, obj2.val);
 
 Why are the results different?
 
-### 🧠 Task 3 — Garbage Collection
+### Task 3 — Garbage Collection
 
 ```js
 let car = { model: "Tesla" };
