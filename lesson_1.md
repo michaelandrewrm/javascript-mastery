@@ -246,9 +246,3 @@ Source Code
 ```
 
 > JavaScript isn't "interpreted line by line", it's parsed, compiled, executed, and optimized in a dynamic, multi-phase pipeline.
-
-<p style="text-align: center;">
-  <a href="/README.md">Home</a>
-  <span>|</span>
-  <a href="/lesson_2.md">Next</a>
-</p>
