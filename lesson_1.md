@@ -1,17 +1,16 @@
-# 🧩 Lesson 1: The JavaScript Execution Model
+# Lesson 1: The JavaScript Execution Model
 
-🚀 Learning Goals
+**Learning Goals:**
+
 By the end of this lesson, you’ll understand:
 
-1. What happens when you write and run JavaScript — from source code to execution.
+1. What happens when you write and run JavaScript, from source code to execution.
 2. The difference between compilation and interpretation in JavaScript.
 3. How the V8 engine (used in Chrome and Node.js) runs your code.
 4. The complete lifecycle: Parsing → AST → Compilation → Execution.
 5. How the call stack and memory behave step-by-step.
 
----
-
-## 🧠 1. From Script to Running Code
+## 1. From Script to Running Code
 
 When you write:
 
@@ -25,14 +24,12 @@ But under the hood, the engine performs a complex pipeline before printing that 
 Let's walk through it:
 
 ```
-Your Source Code
-    ↓
-Lexing → Parsing → AST → Compilation → Execution
+Your Source Code → Lexing → Parsing → AST → Compilation → Execution
 ```
 
-## ⚙️ 2. Compilation vs Interpretation
+## 2. Compilation vs Interpretation
 
-### 💡 The Classic Distinction
+### The Classic Distinction
 
 | Phase  | Compiler               | Interpreter           |
 | ------ | ---------------------- | --------------------- |
@@ -40,7 +37,7 @@ Lexing → Parsing → AST → Compilation → Execution
 | Output | Machine code (binary)  | Immediate execution   |
 | Speed  | Faster (pre-optimized) | Slower (line-by-line) |
 
-### 🧩 JavaScript’s Reality
+### JavaScript’s Reality
 
 Javascript is both compiled and interpreted.
 Modern engines like V8 use Just-In-Time (JIT) compilation strategy:
@@ -49,10 +46,9 @@ Modern engines like V8 use Just-In-Time (JIT) compilation strategy:
 2. Interpreter (Ignition): Converts AST → Bytecode, runs it immediately
 3. Profiler: Detects "hot" code (frequently run functions)
 4. Optimizing compiler (TurboFan): Converts hot bytecode → Machine Code
-5. De-optimizer: Reverts optimized code if assumptions break
-   so JS begins interpreted, but "heats up" into compiled native code.
+5. De-optimizer: Reverts optimized code if assumptions break so JS begins interpreted, but "heats up" into compiled native code.
 
-## ⚡ 3. The Role of the V8 Engine
+## 3. The Role of the V8 Engine
 
 V8 = JavaScript Engine used in Chrome & Node.js
 
@@ -73,59 +69,60 @@ Workflow:
 3. TurboFan → Optimizes hot bytecode → Native machine code
 4. Runtime → Executes with memory management, Garbage Collector (GC), and event loop integration
 
-## 💻 4. Code Demo
+## 4. Code Demo
 
 ```js
 // file: example.js
 function greet(name) {
-  const message = "Hello, " + "!";
+  const message = "Hello, " + name + "!";
   return message;
 }
 
 const user = "Ada";
 const output = greet(user);
+
 console.log(output);
 ```
 
-### 🧩 Step-by-Step Breakdown
+### Step-by-Step Breakdown
 
-🏗️ Phase 1: Parsing
+#### Phase 1: Parsing
 
 - Engine scans the code, token by token (function, const, return, etc.)
 - Builds an AST representing structure:
 
-```js
-Program
-|- FunctionDeclaration (greet)
-|   |- Identifier(name)
-|   |- BlockStatement
-|       |- VariableDeclaration (message)
-|       |- ReturnStatement (message)
-|- VariableDeclaration (user)
-|- VariableDeclaration (output)
-|- ExpressionStatement (console.log)
-```
+  ```
+  Program
+  ├─ FunctionDeclaration (greet)
+  │   ├─ Identifier(name)
+  │   └─ BlockStatement
+  │       ├─ VariableDeclaration (message)
+  │       └─ ReturnStatement (message)
+  ├─ VariableDeclaration (user)
+  ├─ VariableDeclaration (output)
+  └─ ExpressionStatement (console.log)
+  ```
 
-🧮 Phase 2: Compilation
+#### Phase 2: Compilation
 
 - Ignition compiles AST → Bytecode instructions like:
 
-```js
-LoadConstant "hello, "
-Add name
-Add "!"
-Return message
-```
+  ```
+  LoadConstant "hello, "
+  Add name
+  Add "!"
+  Return message
+  ```
 
 - This bytecode runs on the V8 interpreter
 
-⚙️ Phase 3: Execution
+### Phase 3: Execution
 
 - The engine creates the Global Execution Context.
 - It allocates memory for greet, user, and output.
 - Then runs top-to-bottom.
 
-Execution timeline:
+#### Execution timeline:
 
 | Step | Action                                       | Stack                | Memory                                             |
 | ---- | -------------------------------------------- | -------------------- | -------------------------------------------------- |
@@ -135,25 +132,25 @@ Execution timeline:
 | 4.   | Return `"Hello, Ada!"`                       | `Global()`           | `output → "Hello, Ada!"`                           |
 | 5.   | `console.log(output)` → prints "Hello, Ada!" | `Global()`           | -                                                  |
 
-## 🧱 5. Visual Interpretation
+## 5. Visual Interpretation
 
-### 🧠 Call Stack
+### Call Stack
 
 ```
 Call stack
 [top]
-|
-|   console.log()
-|   greet()
-|   Global()
-|________________
+│
+│ console.log()
+│ greet()
+│ Global()
+└────────────────────
 ```
 
-Each **function call** pushes a frame; **each return** pops it.
+Each function call pushes a frame; each return pops it.
 
-### 🗃️ Memory Snapshot
+### Memory Snapshot
 
-```txt
+```
 Memory
 greet → <function>
 user → "Ada"
@@ -161,30 +158,23 @@ output → "Hello, Ada!"
 message → (temporary, inside greet)
 ```
 
-## 🔍 6. Behind the Hood (V8 Internals)
+## 6. Behind the Hood (V8 Internals)
 
-1. Scanner / Parser
+- Scanner / Parser
+  - Breaks code into tokens and syntax tree (AST).
+  - Detects syntax errors before execution.
+- Ignition (Interpreter)
+  - Converts AST → bytecode.
+  - Executes bytecode line by line.
+  - Collects runtime information (types, shapes).
+- TurboFan (JIT Compiler)
+  - Identifies "hot" functions (like `greet` if called often).
+  - Compiles them into machine code for your CPU.
+  - Uses inline caching and hidden classes for performance.
+- Garbage Collector (Orinoco)
+  - Frees memory of variables no longer reachable.
 
-- Breaks code into tokens and syntax tree (AST).
-- Detects syntax errors before execution.
-
-2. Ignition (Interpreter)
-
-- Converts AST → bytecode.
-- Executes bytecode line by line.
-- Collects runtime information (types, shapes).
-
-3. TurboFan (JIT Compiler)
-
-- Identifies "hot" functions (like `greet` if called often).
-- Compiles them into machine code for your CPU.
-- Uses inline caching and hidden classes for performance.
-
-4. Garbage Collector (Orinoco)
-
-- Frees memory of variables no longer reachable.
-
-## 📚 7. Key Terms
+## 7. Key Terms
 
 | Term                        | Meaning                                                        |
 | --------------------------- | -------------------------------------------------------------- |
@@ -197,16 +187,16 @@ message → (temporary, inside greet)
 | Garbage Collector (Orinoco) | Automatic memory cleanup                                       |
 | Inline Cache (IC)           | Optimization caching property access patterns                  |
 
-## ⚠️ 8. Common Pitfalls
+## 8. Common Pitfalls
 
-1. Misconception: _"JavaScript ins't compiled."_
-   - It is, but just in time - compilation happens dynamically before execution.
-2. Assuming "line-by-line" execution:
-   - JS engines preprocess and compile functions before running.
-3. Believing code runs instantly:
-   - Parsing, compiling, and optimizing all happen under the hood - modern engines are just incredibly fast.
+- Misconception: _"JavaScript ins't compiled."_
+  - It is, but just in time - compilation happens dynamically before execution.
+- Assuming "line-by-line" execution:
+  - JS engines preprocess and compile functions before running.
+- Believing code runs instantly:
+  - Parsing, compiling, and optimizing all happen under the hood - modern engines are just incredibly fast.
 
-## ✅ 9. Quick Practice
+## 9. Practice
 
 Predict the order of operations here:
 
@@ -218,37 +208,47 @@ function sayHi() {
 }
 ```
 
-### 🧩 Think:
+**Think:**
 
 - During parsing, what happens to `sayHi`?
 - During execution, what's in memory?
 - What's on the call stack when it runs?
 
-During parsing, function `sayHi` is hoisted - its entire definition is stored in memory.
-At runtime:
+**During parsing:**
+
+- The function `sayHi` is hoisted
+- its entire definition is stored in memory.
+
+**At runtime:**
 
 - Global Execution Context created
 - `sayHi` already defined
 - `sayHi()` is called → pushes `sayHi()` to stack → runs logs "Hi!" → pops.
 
-Output:
+**Output:**
 
 ```
 Hi!
 ```
 
-🧭 Summary Mental Model
+## 🧭 Summary Mental Model
 
 ```
 Source Code
-   ↓
+    ↓
 [ Parser ] → AST
-   ↓
+    ↓
 [ Ignition ] → Bytecode → Run
-   ↓
+    ↓
 [ TurboFan ] → Optimized Machine Code
-   ↓
+    ↓
 [ Call Stack + Heap ] → Execution
 ```
 
-JavaScript isn't "interpreted line by line" - it's parsed, compiled, executed, and optimized in a dynamic, multi-phase pipeline.
+> JavaScript isn't "interpreted line by line", it's parsed, compiled, executed, and optimized in a dynamic, multi-phase pipeline.
+
+<p style="text-align: center;">
+  <a href="/README.md">Home</a>
+  <span>|</span>
+  <a href="/lesson_2.md">Next</a>
+</p>
