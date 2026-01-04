@@ -80,7 +80,7 @@ Goal: Fully understand how JavaScript handles object-oriented behavior and inher
 - Object cloning and shallow vs deep copies.
 - Visual: object in memory and reference behavior.
 
-Lesson 10: Prototypes and the Prototype Chain
+[Lesson 10: Prototypes and the Prototype Chain](lesson_10.md)
 
 - [[Prototype]] linkage and lookup mechanism.
 - Object.create, **proto**, prototype.
