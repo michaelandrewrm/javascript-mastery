@@ -87,7 +87,7 @@ Goal: Fully understand how JavaScript handles object-oriented behavior and inher
 - How JS finds methods up the chain.
 - Visualization: object chain traversal.
 
-Lesson 11: ES6 Classes and Inheritance
+[Lesson 11: ES6 Classes and Inheritance](lesson_11.md)
 
 - Syntactic sugar over prototypes.
 - Class fields, static methods, inheritance model.
