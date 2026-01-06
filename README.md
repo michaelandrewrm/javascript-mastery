@@ -98,7 +98,7 @@ Goal: Fully understand how JavaScript handles object-oriented behavior and inher
 
 Goal: Learn how modern JS features and internals optimize runtime performance.
 
-Lesson 12: Modules and the JS Runtime
+[Lesson 12: Modules and the JS Runtime](lesson_12.md)
 
 - ES Modules vs CommonJS.
 - Import/export behavior and module scope.
