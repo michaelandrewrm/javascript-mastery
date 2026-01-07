@@ -104,7 +104,7 @@ Goal: Learn how modern JS features and internals optimize runtime performance.
 - Import/export behavior and module scope.
 - How bundlers and runtime loaders handle modules.
 
-Lesson 13: Memory Management and the Garbage Collector
+[Lesson 13: Memory Management and the Garbage Collector](lesson_13.md)
 
 - Stack vs heap memory revisited.
 - Mark-and-sweep algorithm overview.
