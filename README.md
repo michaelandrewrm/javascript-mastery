@@ -111,7 +111,7 @@ Goal: Learn how modern JS features and internals optimize runtime performance.
 - How circular references are handled.
 - Performance tuning via GC awareness.
 
-Lesson 14: JIT Compilation & Performance
+[Lesson 14: JIT Compilation & Performance](lesson_14.md)
 
 - How V8 optimizes code via Ignition & TurboFan.
 - Hidden classes and inline caches.
