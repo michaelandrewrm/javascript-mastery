@@ -122,7 +122,7 @@ Goal: Learn how modern JS features and internals optimize runtime performance.
 
 Goal: Apply internal knowledge to real-world challenges, debugging, and performance optimization.
 
-Lesson 15: Event Delegation & The DOM Connection
+[Lesson 15: Event Delegation & The DOM Connection](lesson_15.md)
 
 - How JS interfaces with the DOM and Event Loop.
 - Bubbling, capturing, and delegation patterns.
