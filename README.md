@@ -127,7 +127,7 @@ Goal: Apply internal knowledge to real-world challenges, debugging, and performa
 - How JS interfaces with the DOM and Event Loop.
 - Bubbling, capturing, and delegation patterns.
 
-Lesson 16: Asynchronous Patterns in the Wild
+[Lesson 16: Asynchronous Patterns in the Wild](lesson_16.md)
 
 - Combining async/await with event streams.
 - Practical API request handling patterns.
