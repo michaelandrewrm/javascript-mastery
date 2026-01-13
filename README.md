@@ -133,7 +133,7 @@ Goal: Apply internal knowledge to real-world challenges, debugging, and performa
 - Practical API request handling patterns.
 - Error management strategies.
 
-Lesson 17: Debugging & Profiling
+[Lesson 17: Debugging & Profiling](lesson_17.md)
 
 - Using DevTools to inspect call stacks and memory.
 - Breakpoints, performance profiling, async tracing.
