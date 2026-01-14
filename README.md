@@ -138,7 +138,7 @@ Goal: Apply internal knowledge to real-world challenges, debugging, and performa
 - Using DevTools to inspect call stacks and memory.
 - Breakpoints, performance profiling, async tracing.
 
-Lesson 18: Deep Dive into Engine Internals
+[Lesson 18: Deep Dive into Engine Internals](lesson_18.md)
 
 - Detailed architecture of V8 Engine.
 - Parsing, bytecode, and optimization passes.
