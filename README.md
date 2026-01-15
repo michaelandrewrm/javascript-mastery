@@ -150,7 +150,7 @@ Goal: Apply internal knowledge to real-world challenges, debugging, and performa
 - Singleton, Observer, Factory, Module patterns.
 - Understanding patterns in JS context (prototypes & closures).
 
-Lesson 20: Putting It All Together — The JS Mastery Project
+[Lesson 20: Putting It All Together — The JS Mastery Project](lesson_20.md)
 
 - Apply everything to build a small but complex JS system.
 - Trace its execution model manually.
