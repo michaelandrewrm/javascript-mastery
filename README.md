@@ -145,7 +145,7 @@ Goal: Apply internal knowledge to real-world challenges, debugging, and performa
 - JIT compilation in action.
 - How engines differ (V8, SpiderMonkey, JavaScriptCore).
 
-Lesson 19: Design Patterns in JavaScript
+[Lesson 19: Design Patterns in JavaScript](lesson_19.md)
 
 - Singleton, Observer, Factory, Module patterns.
 - Understanding patterns in JS context (prototypes & closures).
